@@ -6,6 +6,89 @@
  programs. For an example implementation, refer to 
  github.com/jteeuwen/go-app-mpc
 
+ Supported commands:
+
+ disableoutput: Turns an audio-output source off.
+  enableoutput: Turns an audio-output source on.
+          kill: Stops MPD from running, in a safe way. Writes a state file if
+                defined.
+        update: Scans the music directory as defined in the MPD configuration
+                file's music_directory  setting. Adds new files and their
+                metadata (if any) to the MPD database and removes files and
+                metadata from the database that are no longer in the directory.
+        status: Reports the current status of MPD, as well as the current
+                settings of some playback options.
+  simplestatus: Same as status, but only basic info in 'prettier' output.
+         stats: Reports database and playlist statistics.
+       outputs: Reports information about all known audio output devices.
+      commands: Reports which commands the current user has access to.
+   notcommands: Reports which commands the current user has *no* access to.
+      tagtypes: Reports a list of available song metadata fields.
+   urlhandlers: Reports a list of available URL handlers.
+          find: Finds songs in the database with a case sensitive, exact match
+                to @term.
+          list: Reports all metadata of @type1.
+       listall: Reports all directories and filenames in @path recursively.
+   listallinfo: Reports all information in database about all music files in
+                <string path> recursively.
+        lsinfo: Reports contents of @path, from the database.
+        search: Finds songs in the database with a case insensitive match to
+                @what.
+         count: Reports the number of songs and their total playtime in the
+                database matching @what.
+           add: Add a single file from the database to the playlist. This
+                command increments the playlist version by 1 for each song
+                added to the playlist.
+         addid: Same as 'add', but this returns a playlistid and allows
+                specifying a position at which to insert the file(s).
+         clear: Clears the current playlist. Increments the playlist version by
+                1.
+       current: Reports the metadata of the currently playing song.
+        delete: Deletes the specified song from the playlist. increments the
+                playlist version by 1.
+      deleteid: Deletes the specified song from the playlist. Increments the
+                playlist version by 1.
+          load: Load the playlist @name from the playlist directory, Increments
+                the playlist version by the number of songs added.
+        rename: Renames a playlist from @oldname to @newname.
+          move: Moves a song from position @src to position @dest.
+        moveid: Moves a song with id @src to position @dest.
+        plinfo: Reports metadata for songs in the playlist.
+     plchanges: Reports changed songs currently in the playlist since @version.
+   plchangesid: Same as plchanges, but returns only the songids.
+            rm: Removes the playlist called @name from the playlist directory.
+          save: Saves the current playlist to @name in the playlist directory.
+       shuffle: Shuffles the current playlist, increments playlist version by 1.
+          swap: Swap positions of songs at positions @pos1 and @pos2. Increments
+                playlist version by 1.
+        swapid: Swap positions of songs with id @pos1 and @pos2. Increments
+                playlist version by 1.
+        listpl: Reports files in playlist named @name.
+    listplinfo: Reports songs in playlist named @name.
+         pladd: Adds @path to playlist @name.
+       plclear: Clears playlist @name.
+      pldelete: Deletes song with given @id from playlist @name.
+        plmove: Moves song with given @id in playlist @name to position @pos.
+      plsearch: Case-insensitive playlist search with 'pretty' output. Easier to
+                use when looking for specific songs to play. Outputs a list of
+                entries like: [#pos:#id] Artist - Album - Title (mm:ss). Listed
+                #pos and #id can be used directly with the 'play' and 'playid'
+                commands.
+     crossfade: Sets crossfading (mixing) between songs.
+          next: Skip to next song.
+         pause: Toggle pause on/off
+          play: Play the song at the specified position.
+        playid: Play the song with the specified id.
+      previous: Go back to previous song.
+        random: Toggle random mode on/off
+        repeat: Toggle repeat mode on/off
+          seek: Skip to specific point in time in song at position @pos.
+        seekid: Skip to specific point in time in song with @id.
+        volume: Volume adjustment. Allows setting of explicit volume value as
+                well as a relative increase and decrease of current volume.
+          stop: Stop the playback.
+        toggle: Toggles between play/pause
+
 ================================================================================
  DEPENDENCIES
 ================================================================================
@@ -17,4 +100,12 @@
 ================================================================================
 
  goinstall github.com/jteeuwen/go-pkg-mpd
+
+================================================================================
+ LICENSE
+================================================================================
+
+All code is subject to a 1-clause BSD license. See the LICENSE file for its
+contents.
+
 
